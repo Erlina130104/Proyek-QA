@@ -1,0 +1,411 @@
+,,,,,,,,,,,,,,
+,Website: https://practicesoftwaretesting.com/,,,,Test Case Website,,,,,,,,,
+,,,,,,,,,,,,,,
+1,Fitur Customer Registration,,,,,,,,,,,,,
+,Positive Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,REG-001,Verifikasi tampilan halaman registrasi,Medium,UI,Pengguna membuka halaman registrasi,"1. Buka halaman customer registration
+2. Amati tampilan form",Tidak ada data yang diperlukan,"Semua elemen (field input, tombol, label) tampil dengan jelas dan sesuai posisi","Halaman registrasi customer ditampilkan dengan lengkap. Semua field input (First name, Last name, Date of Birth, Street, Postal code, City, State, Country, Phone, Email address, Password) tampil dengan jelas beserta label dan tombol Register",PASS,"Verifikasi UI berhasil, semua elemen form registrasi tampil dengan baik",N/A,N/A,
+,REG-002,Registrasi dengan semua field valid,High,Functional Positive,Halaman registrasi terbuka,"1. Isi field First Name dengan ""Erlina""
+2. Isi field Last Name dengan ""Nainggolan""
+3. Isi field DOB dengan ""2004-01-13""
+4. Isi field Street dengan ""Jalan Ambarita""
+5. Isi field Postal code dengan ""22395""
+6. Isi field City dengan ""Samosir""
+7. Isi field State dengan ""Sumatera Utara""
+8. Isi field Country dengan ""Indonesia""
+9. Isi field Phone dengan ""08971798041""
+10. Isi field Email dengan ""febiola20199@mail.com""
+11. Isi field Password dengan ""Lina@1301""
+12. Klik tombol ""Register""","1. First Name ""Erlina""
+2.  Last Name  ""Nainggolan""
+3.  DOB  ""2004-01-13""
+4.  Street  ""Jalan Ambarita""
+5.  Postal code  ""22395""
+6.  City  ""Samosir""
+7.  State  ""Sumatera Utara""
+8.  Country  ""Indonesia""
+9.  Phone  ""08971798041""
+10.  Email  ""febiola20199@mail.com""
+11.  Password  ""Lina@1301""",Sistem redirect ke halaman login dalam 3 detik,Sistem redirect ke halaman login dalam 3 detik,PASS,Registrasi berhasil dengan data yang benar. Sistem otomatis pindah ke halaman login setelah 3 detik,N/A,N/A,
+,REG-003,Validasi indikator kekuatan password,Medium,UI/Functional,Halaman registrasi terbuka,"1. Isi field password dengan ""lina1234"" → lihat indikator berubah menjadi ""Weak""
+2. Isi field password dengan ""Lina@1234"" → lihat indikator berubah menjadi ""Strong""",Test 1: lina1234 → WeakTest 2: Lina@1234 → Strong,Indikator kekuatan password berubah warna/teks sesuai kompleksitas password (Weak/Medium/Strong),Indikator kekuatan password berubah warna/teks sesuai kompleksitas password,PASS,Ada indikator yang menunjukkan kekuatan password (Weak/Strong/Very Strong). Membantu pengguna membuat password yang aman,N/A,N/A,
+,,,,,,,,,,,,,,
+,Negative Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,Link ZIRA
+,REG-004,Coba registrasi tanpa mengisi field wajib,High,Functional Negative,Halaman registrasi terbuka,"1. Biarkan semua field yang bertanda * kosong
+2. Klik tombol ""Register""",Semua field wajib: (kosong),"Pesan error ""Field ini wajib diisi"" muncul di bawah setiap field yang kosong","Sistem menampilkan pesan error validasi di bawah setiap field yang wajib diisi dengan background merah muda. 
+Pesan error yang muncul: 'First name is required', 'Last name is required', 'Date of Birth is required', 'Street is required', 'Postcode is required', 'City is required', 'State is required', 'Country is required', 'Phone is required', 'Email is required', dan pesan validasi password.",PASS,Sistem berhasil mencegah register jika ada kolom wajib yang kosong. Muncul pesan error yang jelas,N/A,N/A,
+,REG-005,Validasi format email salah,High,Validation,Halaman registrasi terbuka,"1. Isi semua field dengan benar kecuali email
+2. Isi email tanpa tanda ""@"" (contoh: erlina.com)
+3. Klik tombol ""Register""",Email: erlina.com(Field lain: valid),"Pesan error ""Format email tidak valid"" muncul di bawah field email dengan warna merah",Sistem menampilkan pesan error validasi pada field Email. Field email ditandai dengan border merah dan background error merah muda karena format email tidak valid (tidak mengandung karakter '@'). Email yang diisi: 'fealicia12019.com' tanpa '@',PASS,Sistem menolak email yang tidak valid (contoh: tanpa tanda @). Validasi format email bekerja dengan baik,N/A,N/A,
+,REG-006,Validasi panjang password kurang dari 8 karakter,High,Validation,Halaman registrasi terbuka,"1. Isi semua field dengan valid
+2. Isi password dengan kurang dari 8 karakter (contoh: lina)
+3. Klik tombol ""Register""",Password: lina(Field lain: valid),"Pesan error ""Password harus minimal 8 karakter"" muncul di bawah field password dengan warna merah","Sistem menampilkan pesan error validasi pada field Password. Field password ditandai dengan border merah dan muncul pesan error dengan background merah muda: 'Password must be minimal 6 characters long. 
+Password can not include invalid characters.' Password yang diisi hanya 4 karakter ('Febi'), kurang dari minimal 6 karakter yang dipersyaratkan",PASS,Sistem menolak password yang terlalu pendek (kurang dari 6 karakter). Ini melindungi keamanan akun pengguna,N/A,N/A,
+,REG-007,Validasi password tanpa huruf besar,Medium,Validation,Halaman registrasi terbuka,"1. Isi semua field dengan valid
+2. Isi password tanpa huruf kapital (contoh: lina1234)
+3. Klik tombol ""Register""",Password: lina1234(Field lain: valid),"Pesan error ""Password harus mengandung minimal 1 huruf besar"" muncul di bawah field password","1. Isi semua field dengan valid
+2. Isi password: ""lina1234"" (tanpa huruf besar)
+3. Klik tombol ""Register""
+4. Muncul error message: ""Password can not include invalid characters.""
+5. Password field ditandai dengan border merah
+6. Password strength menunjukkan ""Strong""
+7. Register tidak bisa di lanjutkan",FAILED,"Validasi password berhasil mencegah registrasi
+dan Error message tidak akurat/misleading - perlu diperbaiki agar user paham apa yang salah",Medium,"Fungsionalitas benar, tapi UX kurang baik karena pesan error membingungkan.",https://erlina-qa-portfolio.atlassian.net/browse/KAN-12
+,REG-008,Validasi password tanpa karakter spesial,Medium,Validation,Halaman registrasi terbuka,"1. Isi semua field dengan valid
+2. Isi password tanpa simbol spesial (contoh: Lina1234)
+3. Klik tombol ""Register""",Password: Lina1234(Field lain: valid),"Pesan error ""Password harus mengandung minimal 1 karakter spesial (@, #, $, dll)"" muncul di bawah field password","1. Isi semua field dengan valid
+2. Isi password: ""Febi1301"" (tanpa karakter spesial)
+3. Password field ditandai dengan border merah
+4. Muncul error message: ""Password can not include invalid characters.""
+5. Password strength menunjukkan ""Very Strong""
+6. Tombol ""Register"" tidak bisa diklik (disabled)
+7. Registrasi tidak dapat dilanjutkan",FAILED,"Bug Ditemukan:
+
+- Error message tidak akurat dan misleading
+- Password tanpa karakter spesial seharusnya mendapat pesan ""harus mengandung minimal 1 karakter spesial"", bukan ""cannot include invalid characters""
+- Pesan error membingungkan user",Medium,(User experience buruk karena pesan error tidak informatif),https://erlina-qa-portfolio.atlassian.net/browse/KAN-13
+,REG-009,Validasi indikator kekuatan password,Medium,UI/Functional,Halaman registrasi terbuka,"1. Isi field password dengan ""lina1234"" → lihat indikator berubah menjadi ""Weak""
+2. Isi field password dengan ""Lina@1234"" → lihat indikator berubah menjadi ""Strong""",Test 1: lina1234 → WeakTest 2: Lina@1234 → Strong,Indikator kekuatan password berubah warna/teks sesuai kompleksitas password (Weak/Medium/Strong),Indikator kekuatan password berubah warna/teks sesuai kompleksitas password,PASS,Ada indikator yang menunjukkan kekuatan password (Weak/Strong/Very Strong). Membantu pengguna membuat password yang aman,N/A,N/A,
+,REG-010,Validasi format tanggal lahir salah,Medium,Validation,Halaman registrasi terbuka,"1. Isi semua field dengan valid
+2. Isi tanggal lahir dengan format salah DD/MM/YYYY (contoh: 12/05/1995)
+3. Klik tombol ""Register""",DOB: 12/05/1995(Field lain: valid),"Pesan error ""Please enter a valid date in YYYY-MM-DD format"""" muncul di bawah field DOB","Pesan error ""Please enter a valid date in YYYY-MM-DD format"" muncul di bawah field DOB",PASS,Sistem hanya menerima tanggal lahir dengan format YYYY-MM-DD. Format lain akan ditolak,N/A,N/A,
+,REG-011,Validasi nomor telepon bukan angka,Medium,Validation,Halaman registrasi terbuka,"1. Isi semua field dengan valid
+2. Isi field Phone dengan huruf dan angka (contoh: abcde123)
+3. Klik tombol ""Register""",Phone: abcde123(Field lain: valid),"Pesan error ""Nomor telepon harus berupa angka saja"" muncul di bawah field Phone","Pesan error ""Only number are allowed"" muncul dibawah field Phone",PASS,Kolom nomor telepon hanya menerima angka. Huruf atau karakter lain akan ditolak,N/A,N/A,
+,REG-012,"Validasi tombol ""Register"" nonaktif sebelum field wajib diisi",Medium,UI,Halaman registrasi terbuka,"1. Buka halaman registrasi
+2. Cek status tombol ""Register"" sebelum mengisi field apa pun",Tidak ada data yang diperlukan,"Tombol ""Register"" berwarna abu-abu (disabled) dan tidak bisa diklik sebelum semua field wajib diisi",Pesan error  muncul di bawah setiap filed,FAILED,"Bug ditemukan - Tombol Register masih bisa diklik meskipun kolom wajib belum diisi, sehingga muncul banyak pesan error sekaligus",Medium,Pengalaman pengguna kurang baik karena bisa klik tombol tanpa mengisi form terlebih dahulu,https://erlina-qa-portfolio.atlassian.net/browse/KAN-14
+,,,,,,,,,,,,,,
+2,Fitur Login,,,,,,,,,,,,,
+,Positive Test,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severitty Impact,
+,LGN-001,Verifikasi tampilan halaman Login,Medium,UI,Pengguna mengakses halaman Login,"1. Klik menu ""Sign In"" di Navbar
+2. Amati tampilan form login",Tidak ada data yang diperlukan,"Form login, tombol ""Sign in with Google"", dan link ""Register/Forgot Password"" tampil dengan benar dan rapi","Form login, tombol ""Sign in with Google"", dan link ""Register/Forgot Password"" tampil dengan benar dan rapi",PASS,"Tampilan halaman login lengkap dengan semua elemen yang diperlukan (form login, tombol Google, link registrasi dan lupa password)",N/A,N/A,
+,LGN-002,Login dengan kredensial valid,High,Functional Positive,Akun pengguna sudah terdaftar di sistem,"1. Isi field Email dengan ""erlinanainggolan130104@gmail.com""
+2. Isi field Password dengan ""Febi@1301""
+3. Klik tombol ""Login""",Email: erlinanainggolan130104@gmail.comPassword: Febi@1301,Pengguna berhasil login dan diarahkan ke halaman utama/dashboard,Pengguna berhasil login dan diarahkan ke halaman My Account,PASS,Login berhasil dengan email dan password yang benar. Pengguna diarahkan ke halaman My Account,N/A,N/A,
+,LGN-003,Login menggunakan Google,Medium,Functional Positive,Pengguna memiliki akun Google,"1. Klik tombol ""Sign in with Google""",Akun Google: (akun Google pengguna),Jendela pop-up otorisasi Google terbuka dan pengguna bisa memilih akun Google untuk login,Jendela pop-up otorisasi Google terbuka dan pengguna bisa memilih akun Google untuk login,PASS,Login menggunakan akun Google berfungsi dengan baik. Muncul jendela popup untuk memilih akun Google,N/A,N/A,
+,LGN-004,"Klik link ""Register your account""",Low,Navigation,Halaman login terbuka,"1. Klik link ""Register your account"" di bawah form login",Tidak ada data yang diperlukan,Sistem menampilkan halaman registrasi,Sistem menampilkan halaman registrasi,PASS,Link untuk pindah ke halaman register berfungsi dengan baik,N/A,N/A,
+,LGN-005,"Klik link ""Forgot your password?""",Low,Navigation,Halaman login terbuka,"1. Klik link ""Forgot your password?"" di bawah form login",Tidak ada data yang diperlukan,Sistem menampilkan halaman reset password,Sistem menampilkan halaman reset password,PASS,Link untuk reset password berfungsi dengan baik ketika pengguna lupa password,N/A,N/A,
+,LGN-006,Verifikasi pesan kesalahan tetap muncul setelah login gagal,Medium,UI,Login gagal di percobaan sebelumnya,"1. Lakukan login dengan kredensial yang salah
+2. Ubah input di field Email atau Password
+3. Perhatikan apakah pesan error hilang otomatis",Email: wrong@mail.com → correct@mail.com,Pesan error hilang otomatis ketika pengguna mulai mengetik/memperbaiki input,Pesan error hilang otomatis ketika pengguna mulai mengetik/memperbaiki input,PASS,Pesan error hilang otomatis ketika pengguna mulai mengetik lagi di kolom email atau password,N/A,N/A,
+,LGN-007,Verifikasi fitur tampil/sembunyikan password,Low,UI,Halaman login terbuka,"1. Isi field Password dengan password apa saja
+2. Klik ikon mata di sebelah kanan field Password
+3. Klik lagi ikon mata tersebut",Password: Test@1234,"Password berubah dari tersembunyi (****) menjadi terlihat (Test@1234) ketika ikon mata diklik, dan kembali tersembunyi ketika diklik lagi","Password berubah dari tersembunyi (****) menjadi terlihat (Febi) ketika ikon mata diklik, dan kembali tersembunyi ketika diklik lagi",PASS,Fitur menampilkan/menyembunyikan password berfungsi dengan baik. Memudahkan pengguna melihat password yang diketik,N/A,N/A,
+,LGN-008,Verifikasi pesan kesalahan tetap muncul setelah login gagal,Medium,UI,Login gagal di percobaan sebelumnya,"1. Lakukan login dengan kredensial yang salah
+2. Ubah input di field Email atau Password
+3. Perhatikan apakah pesan error hilang otomatis",Email: wrong@mail.com → correct@mail.com,Pesan error hilang otomatis ketika pengguna mulai mengetik/memperbaiki input,Pesan error hilang otomatis ketika pengguna mulai mengetik/memperbaiki input,PASS,Pesan error hilang otomatis ketika pengguna mulai mengetik lagi di kolom email atau password,N/A,N/A,
+,,,,,,,,,,,,,,
+,Negative Test,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,LGN-009,Login dengan email salah,High,Functional Negative,Email tidak terdaftar di sistem,"1. Isi field Email dengan email yang tidak terdaftar (contoh: elgatiur@gmail.com)
+2. Isi field Password dengan password apa saja
+3. Klik tombol ""Login""",Email: elgatiur@gmail.comPassword: Elga1234,"Pesan error ""Email atau password  salah"" muncul di  bawah tombol  login dengan warna merah","Pesan error ""Invalid email or password"" muncul di bawah tombol login",PASS,Sistem menampilkan pesan error ketika email yang dimasukkan tidak terdaftar,N/A,N/A,
+,LGN-010,Login dengan password salah,High,Functional Negative,Akun sudah terdaftar,"1. Isi field Email dengan email yang benar
+2. Isi field Password dengan password yang salah
+3. Klik tombol ""Login""",Email: erlinanainggolan130104@gmail.comPassword: 12345678,"Pesan error ""Email atau password salah"" muncul di bawah tombol login dengan warna merah","Pesan error ""Invalid email or password"" muncul di bawah tombol login",PASS,Sistem menampilkan pesan error ketika password yang dimasukkan salah,N/A,N/A,
+,LGN-011,Login dengan kolom kosong,High,Functional Negative,Halaman login terbuka,"1. Biarkan field Email dan Password kosong
+2. Klik tombol ""Login""",Email: (kosong)Password: (kosong),"Pesan validasi ""Email harus diisi"" dan ""Password harus diisi"" muncul di bawah masing-masing field","Pesan validasi ""Email is required"" dan ""Password is required""  muncul di bawah masing masing field",PASS,Sistem tidak mengizinkan login jika email dan password tidak diisi,N/A,N/A,
+,LGN-012,Login hanya isi email tanpa password,Medium,Functional Negative,Halaman login terbuka,"1. Isi field Email dengan email valid
+2. Biarkan field Password kosong
+3. Klik tombol ""Login""",Email: erlinanainggolan130104@gmail.comPassword: (kosong),"Pesan error ""Password harus diisi"" muncul di bawah field Password dengan warna merah","Pesan error ""Password is required"" muncul di bawah field Password dengan warna merah",PASS,Sistem menampilkan pesan error jika password tidak diisi meskipun email sudah diisi,N/A,N/A,
+,LGN-013,Login hanya isi password tanpa email,Medium,Functional Negative,Halaman login terbuka,"1. Biarkan field Email kosong
+2. Isi field Password dengan password valid
+3. Klik tombol ""Login""",Email: (kosong)Password: Lina1234,"Pesan error ""Email harus diisi"" muncul di bawah field Email dengan warna merah","Pesan error ""Email is required"" muncul di bawah field Email dengan warna merah",PASS,Sistem menampilkan pesan error jika email tidak diisi meskipun password sudah diisi,N/A,N/A,
+,LGN-014,Verifikasi format email yang salah,Medium,Validation,Halaman login terbuka,"1. Isi field Email tanpa format yang benar (contoh: abc123 tanpa @ dan domain)
+2. Isi field Password dengan password apa saja
+3. Klik tombol ""Login""",Email: abc123Password: Test@1234,"Pesan error validasi format email ""Format email tidak valid"" muncul di bawah field Email","Pesan error validasi format email ""Email format is invalid"" muncul di bawah field Email",PASS,Sistem menolak email dengan format yang salah (contoh: tanpa tanda @ atau domain),N/A,N/A,
+,,,,,,,,,,,,,,
+3,My Account Page,,,,,,,,,,,,,
+,Positive Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,MA_001,Verifikasi tampilan halaman My Account,High,Functional,User sudah login ke sistem,"1. Buka browser
+2. Login dengan akun valid
+3. Klik menu ""My Account""",Email: user@test.comPassword: Test123,"Halaman My Account terbuka, Menampilkan judul ""My account"", teks deskripsi dan terdapat  4 menu button","Halaman My Account terbuka, Menampilkan judul ""My account"", teks deskripsi dan terdapat  4 menu button",PASS,"Halaman My Account berhasil ditampilkan dengan lengkap. Menampilkan judul ""My account"", teks deskripsi, dan 4 menu button (Favorites, Profile, Invoices, Messages)",N/A,N/A,
+,MA_002,Verifikasi menu Favorites dapat diklik,High,Functional,User berada di halaman My Account,"1. Perhatikan menu Favorites
+2. Klik button ""Favorites""",Tidak ada data yang diperlukan,"Button Favorites dapat diklik, halaman berpindah ke halaman Favorites dan menampilkan daftar produk favorit","Button Favorites dapat diklik, halaman berpindah ke halaman Favorites dan menampilkan ""There are no favorites yet. In order to add favorites, please go to the product listing and mark some products as your favorite""",PASS,Tombol Favorites dapat diklik dan berhasil menampilkan halaman Favorites. Saat ini menampilkan pesan bahwa belum ada produk favorit,N/A,N/A,
+,MA_003,Verifikasi menu Profile dapat diklik,High,Functional,User berada di halaman My Account,"1. Perhatikan menu Profile
+2. Klik button ""Profile""",Tidak ada data yang diperlukan,"Button Profile dapat diklik, halaman berpindah ke halaman Profile dan menampilkan informasi profil user","Button Profile dapat diklik dan berhasil menampilkan halaman My Account/Profile dengan semua informasi profil pengguna termasuk:
+
+1) Data personal (First name: Erina, Last name: Nainggolan)
+2) Email address
+3) Phone number
+4) Address details (Street, Postal code, City, State, Country)
+5) Section Password untuk mengubah password
+6)Section Two-Factor Authentication dengan QR code",PASS,"Tombol Profile dapat diklik dan berhasil menampilkan halaman profil pengguna dengan lengkap. Semua informasi ditampilkan: data personal (First name, Last name), email, nomor telepon, alamat lengkap, section untuk mengubah password, dan section Two-Factor Authentication dengan QR code",N/A,N/A,
+,MA_004,Verifikasi menu Invoices dapat diklik,High,Functional,User berada di halaman My Account,"1. Perhatikan menu Invoices
+2. Klik button ""Invoices""",Tidak ada data yang diperlukan,"Button Invoices dapat diklik, halaman berpindah ke halaman Invoices serta menampilkan daftar invoice",Button Invoices dapat diklik dan berhasil menampilkan halaman Invoices,PASS,Tombol Invoices dapat diklik dan berhasil menampilkan halaman Invoices. Tidak ada invoice yang ditampilkan adalah kondisi normal untuk akun yang belum pernah melakukan transaksi pembelian,N/A,N/A,
+,MA_005,Verifikasi menu Messages dapat diklik,High,Functional,User berada di halaman My Account,"1. Perhatikan menu Messages
+2. Klik button ""Messages""",Tidak ada data yang diperlukan,"Button Messages dapat diklik, halaman berpindah ke halaman Messages serta menampilkan daftar pesan",Button Messages dapat diklik dan berhasil menampilkan halaman Messages,PASS,Tombol Messages dapat diklik dan berhasil menampilkan halaman Messages. Tidak ada pesan yang ditampilkan adalah kondisi normal untuk akun yang belum pernah mengirim pesan melalui contact form,N/A,N/A,
+,MA_006,Verifikasi icon pada setiap menu button,Medium,UI,User berada di halaman My Account,"1. Perhatikan setiap menu button
+2. Periksa apakah icon ditampilkan dengan benar",Tidak ada data yang diperlukan,"Icon bintang untuk Favorites, Icon ID card untuk Profile, Icon list untuk Invoices, Icon chat untuk Messages","Icon bintang untuk Favorites, Icon ID card untuk Profile, Icon list untuk Invoices, Icon chat untuk Messages",PASS,"Setiap menu button menampilkan icon yang sesuai: bintang untuk Favorites, ID card untuk Profile, list untuk Invoices, dan chat untuk Messages. Icon membantu pengguna mengenali fungsi dengan cepat",N/A,N/A,
+,MA_007,Verifikasi teks deskripsi halaman,Low,UI,User berada di halaman My Account,"1. Baca teks di bawah judul ""My account""",Tidak ada data yang diperlukan,"Teks yang ditampilkan:""Here you can manage your profile, favorites and orders.""","Teks yang ditampilkan:""Here you can manage your profile, favorites and orders.""",PASS,"Teks deskripsi ""Here you can manage your profile, favorites and orders"" memberikan informasi yang jelas tentang fungsi halaman",N/A,N/A,
+,MA_008,Verifikasi link Support this project,Medium,Functional,User berada di halaman My Account,"1. Scroll ke bagian footer
+2. Klik link ""Support this project""",Tidak ada data yang diperlukan,Link dapat diklik dan Mengarah ke halaman support,Link dapat diklik dan Mengarah ke halaman support,PASS,"Link ""Support this project"" berfungsi dan mengarahkan ke halaman dukungan proyek",N/A,N/A,
+,MA_009,Verifikasi link Privacy Policy,Medium,Functional,User berada di halaman My Account,"1. Scroll ke bagian footer
+2. Klik link ""Privacy Policy""",Tidak ada data yang diperlukan,Link dapat diklik dan mengarah ke halaman privacy policy,Link dapat diklik dan mengarah ke halaman privacy policy,PASS,"Link ""Privacy Policy"" berfungsi dan dapat diakses oleh pengguna",N/A,N/A,
+,MA_010,Verifikasi link GitHub repo,Low,Functional,User berada di halaman My Account,"1. Scroll ke bagian footer
+2. Klik link ""GitHub repo""",Tidak ada data yang diperlukan,Link dapat diklik dan membuka halaman GitHub di tab baru,Link dapat diklik dan membuka halaman GitHub di tab baru,PASS,"Link ""GitHub repo"" berfungsi dan membuka repository GitHub di tab baru",N/A,N/A,
+,MA_011,Verifikasi responsive halaman,Medium,UI,User berada di halaman My Account,"1. Buka halaman di desktop
+2. Resize ke ukuran tablet
+3. Resize ke ukuran mobile",Tidak ada data yang diperlukan,Layout menyesuaikan dan semua menu terlihat dan tidak ada elemen terpotong,Layout menyesuaikan dan semua menu terlihat dan tidak ada elemen terpotong,PASS,"Tampilan halaman menyesuaikan dengan baik di berbagai ukuran layar (desktop, tablet, mobile)",N/A,N/A,
+,,,,,,,,,,,,,,
+,Negative Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,MA_012,Verifikasi akses tanpa login,High,Security,User belum login,"1. Buka browser
+2. Akses URL /my-account tanpa login",URL: /my-account,Halaman tidak dapat diakses dan User diarahkan ke halaman login,Halaman tidak dapat diakses dan User diarahkan ke halaman login,PASS,Sistem berhasil memblokir akses ke halaman My Account untuk user yang belum login. User otomatis diarahkan ke halaman login. Proteksi keamanan berfungsi dengan baik,N/A,N/A,
+,,,,,,,,,,,,,,
+4,Fitur Home - Product Catalog,,,,,,,,,,,,,
+,Positive Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,HOME-001,Verifikasi fitur Search menampilkan produk sesuai kata kunci,High,Functional Positive,Pengguna berada di halaman katalog produk Toolshop,"1. Ketik kata kunci ""pliers"" di kolom Search
+2. Klik tombol Search",Kata kunci: pliers,"Hanya produk yang mengandung kata ""pliers"" dalam nama produk yang muncul (misalnya Combination Pliers, Long Nose Pliers). Produk lain tidak muncul","Hanya produk yang mengandung kata ""pliers"" dalam nama produk yang muncul (misalnya Combination Pliers, Long Nose Pliers). Produk lain tidak muncul",PASS,Fitur pencarian produk bekerja dengan baik. Hanya produk yang sesuai dengan kata kunci yang ditampilkan,N/A,N/A,
+,HOME-002,Verifikasi filter berdasarkan Price Range berfungsi dengan benar,High,Functional Positive,Pengguna berada di halaman katalog produk,"1. Geser slider Price Range ke rentang $10-$20
+2. Klik tombol Search (jika diperlukan)",Price Range: $10 - $20,Hanya produk dengan harga antara $10-$20 yang tampil. Produk di luar rentang harga tidak muncul,Hanya produk dengan harga antara $10-$20 yang tampil. Produk di luar rentang harga tidak muncul,PASS,Filter berdasarkan rentang harga berfungsi dengan baik. Membantu pelanggan mencari produk sesuai budget,N/A,N/A,
+,HOME-003,"Verifikasi filter kategori ""Hand Tools"" hanya menampilkan produk terkait",Medium,Functional Positive,Pengguna berada di halaman katalog produk,"1. Centang kategori ""Hand Tools"" di bagian Filters",Kategori: Hand Tools,"Hanya produk dengan kategori ""Hand Tools"" yang tampil. Produk kategori lain tidak muncul","Hanya produk dengan kategori ""Hand Tools"" yang tampil. Produk kategori lain tidak muncul",PASS,"Filter berdasarkan kategori ""Hand Tools"" bekerja dengan baik, hanya menampilkan produk kategori tersebut",N/A,N/A,
+,HOME-004,Verifikasi tampilan status Out of Stock muncul pada produk yang habis,Medium,Functional/UI,Ada produk yang stoknya habis,"1. Lihat daftar produk di halaman katalog
+2. Perhatikan produk yang stoknya habis",Tidak ada data yang diperlukan,"Produk yang stoknya habis menampilkan label ""Out of stock"" dengan warna merah dan tombol ""Add to cart"" disabled/tidak aktif","Produk yang stoknya habis menampilkan label ""Out of stock"" dengan warna merah dan tombol ""Add to cart"" disabled/tidak aktif",PASS,"Produk yang stoknya habis ditandai dengan jelas dengan label ""Out of stock"" dan tombol beli tidak aktif",N/A,N/A,
+,HOME-005,Verifikasi sorting produk berdasarkan harga terendah,Medium,Functional Positive,Pengguna berada di halaman katalog produk,"1. Klik menu Sort
+2. Pilih opsi ""Price: Low to High""",Opsi sort: Price (Low to High),Produk diurutkan berdasarkan harga dari yang termurah ke termahal. Produk termurah muncul paling atas,Produk diurutkan berdasarkan harga dari yang termurah ke termahal. Produk termurah muncul paling atas,PASS,Pengurutan produk dari harga termurah ke termahal berfungsi dengan benar,N/A,N/A,
+,HOME-006,Verifikasi tampilan harga dan nama produk pada setiap kartu produk,Low,UI,Produk sudah dimuat di halaman katalog,"1. Lihat setiap kartu produk di halaman
+2. Perhatikan apakah gambar, nama, dan harga tampil",Tidak ada data yang diperlukan,"Setiap produk menampilkan gambar yang jelas, nama produk lengkap, dan harga produk dengan format yang benar (contoh: $45.99)","Setiap produk menampilkan gambar yang jelas, nama produk lengkap, dan harga produk dengan format yang benar (contoh: $45.99)",PASS,"Setiap kartu produk menampilkan gambar, nama produk, dan harga dengan jelas",N/A,N/A,
+,HOME-007,Verifikasi sorting produk berdasarkan nama (A-Z),Medium,Functional Positive,Pengguna berada di halaman katalog produk,"1. Klik menu Sort
+2. Pilih opsi ""Name (A-Z)""",Opsi sort: Name (A-Z),Produk diurutkan berdasarkan abjad nama produk dari A ke Z. Produk dengan nama berawalan A muncul paling atas,Produk diurutkan berdasarkan abjad nama produk dari A ke Z. Produk dengan nama berawalan A muncul paling atas,PASS,Pengurutan produk berdasarkan nama A-Z berfungsi dengan baik,N/A,N/A,
+,HOME-008,Verifikasi sorting produk berdasarkan nama (Z-A),Medium,Functional Positive,Pengguna berada di halaman katalog produk,"1. Klik menu Sort
+2. Pilih opsi ""Name (Z-A)""",Opsi sort: Name (Z-A),Produk diurutkan berdasarkan abjad nama produk dari Z ke A. Produk dengan nama berawalan Z muncul paling atas,Produk diurutkan berdasarkan abjad nama produk dari Z ke A. Produk dengan nama berawalan Z muncul paling atas,PASS,Pengurutan produk berdasarkan nama Z-A berfungsi dengan baik,N/A,N/A,
+,HOME-009,Verifikasi sorting produk berdasarkan harga tertinggi,Medium,Functional Positive,Pengguna berada di halaman katalog produk,"1. Klik menu Sort
+2. Pilih opsi ""Price: High to Low""",Opsi sort: Price (High to Low),Produk diurutkan berdasarkan harga dari yang termahal ke termurah. Produk termahal muncul paling atas,Produk diurutkan berdasarkan harga dari yang termahal ke termurah. Produk termahal muncul paling atas,PASS,Pengurutan produk dari harga terHigh ke teLow berfungsi dengan baik,N/A,N/A,
+,HOME-010,Verifikasi sorting produk berdasarkan CO2 Rating (A-E),Low,Functional Positive,Pengguna berada di halaman katalog produk,"1. Klik menu Sort
+2. Pilih opsi ""CO2 Rating (A-E)""",Opsi sort: CO2 Rating (A-E),Produk diurutkan berdasarkan tingkat efisiensi karbon dari A ke E (paling ramah lingkungan ke paling boros). Produk dengan rating A muncul paling atas,Produk diurutkan berdasarkan tingkat efisiensi karbon dari A ke E (paling ramah lingkungan ke paling boros). Produk dengan rating A muncul paling atas,PASS,Pengurutan produk berdasarkan rating CO2 (A-E) untuk produk ramah lingkungan berfungsi,N/A,N/A,
+,HOME-011,Verifikasi sorting produk berdasarkan CO2 Rating (E-A),Low,Functional Positive,Pengguna berada di halaman katalog produk,"1. Klik menu Sort
+2. Pilih opsi ""CO2 Rating (E-A)""",Opsi sort: CO2 Rating (E-A),Produk diurutkan berdasarkan tingkat efisiensi karbon dari E ke A (paling boros ke paling ramah lingkungan). Produk dengan rating E muncul paling atas,Produk diurutkan berdasarkan tingkat efisiensi karbon dari E ke A (paling boros ke paling ramah lingkungan). Produk dengan rating E muncul paling atas,PASS,Pengurutan produk berdasarkan rating CO2 (E-A) berfungsi dengan baik,N/A,N/A,
+,,,,,,,,,,,,,,
+5,Fitur Categories - Hand Tools,,,,,,,,,,,,,
+,Positive Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,CAT-HT-001,"Verifikasi halaman kategori ""Hand Tools"" menampilkan produk yang sesuai",High,Functional Positive,Pengguna berada di halaman Toolshop,"1. Klik menu ""Categories""
+2. Pilih ""Hand Tools""",Kategori: Hand Tools,"Halaman menampilkan hanya produk yang termasuk kategori Hand Tools (seperti hammer, pliers, screwdriver, dll)","Halaman menampilkan hanya produk yang termasuk kategori Hand Tools (seperti hammer, pliers, screwdriver, dll)",PASS,"Halaman kategori Hand Tools menampilkan hanya produk alat tangan seperti palu, tang, obeng, dll",N/A,N/A,
+,CAT-HT-002,Verifikasi filter By brand menampilkan produk sesuai merek ForgeFlex Tools,Medium,Functional Positive,Pengguna berada di halaman kategori Hand Tools,"1. Centang filter ""ForgeFlex Tools"" pada bagian By brand",Merek: ForgeFlex Tools,Hanya produk dengan merek ForgeFlex Tools yang ditampilkan di halaman. Produk merek lain tidak muncul,Hanya produk dengan merek ForgeFlex Tools yang ditampilkan di halaman. Produk merek lain tidak muncul,PASS,"Filter berdasarkan merek ""ForgeFlex Tools"" berfungsi dengan baik, hanya menampilkan produk merek tersebut",N/A,N/A,
+,CAT-HT-003,Verifikasi filter By brand menampilkan produk sesuai merek MightyCraft Hardware,Medium,Functional Positive,Pengguna berada di halaman kategori Hand Tools,"1. Centang filter ""MightyCraft Hardware"" pada bagian By brand",Merek: MightyCraft Hardware,Hanya produk dengan merek MightyCraft Hardware yang ditampilkan di halaman. Produk merek lain tidak muncul,Hanya produk dengan merek MightyCraft Hardware yang ditampilkan di halaman. Produk merek lain tidak muncul,PASS,"Filter berdasarkan merek ""MightyCraft Hardware"" berfungsi dengan baik",N/A,N/A,
+,CAT-HT-004,Verifikasi filter Sustainability hanya menampilkan produk ramah lingkungan,High,Functional Positive,Pengguna berada di halaman kategori Hand Tools,"1. Centang ""Show only eco-friendly products"" pada bagian Sustainability",Filter: Show only eco-friendly products,Hanya produk yang memiliki label ECO atau rating CO2 A/B (ramah lingkungan) yang muncul di daftar produk. Produk lain disembunyikan,Hanya produk yang memiliki label ECO atau rating CO2 A/B (ramah lingkungan) yang muncul di daftar produk. Produk lain disembunyikan,PASS,"Filter ""Show only eco-friendly products"" hanya menampilkan produk ramah lingkungan (rating CO2 A/B)",N/A,N/A,
+,CAT-HT-005,Verifikasi navigasi antar kategori di menu Categories berfungsi,Medium,Functional Positive,Pengguna berada di halaman katalog,"1. Klik menu ""Categories"" di bagian atas
+2. Pilih kategori lain seperti ""Power Tools""",Kategori tujuan: Power Tools,Halaman berpindah ke kategori yang dipilih (Power Tools) dan menampilkan produk sesuai kategori tersebut,Halaman berpindah ke kategori yang dipilih (Power Tools) dan menampilkan produk sesuai kategori tersebut,PASS,"Navigasi antar kategori berfungsi dengan lancar, dapat berpindah dari Hand Tools ke kategori lain",N/A,N/A,
+,CAT-HT-006,Verifikasi tampilan harga dan nama produk pada halaman kategori Hand Tools,Low,UI,Pengguna membuka kategori Hand Tools,"1. Lihat daftar produk di halaman kategori
+2. Periksa setiap kartu produk",Tidak ada data yang diperlukan,"Setiap produk menampilkan gambar yang jelas, nama produk, dan harga produk dengan format yang benar","Setiap produk menampilkan gambar yang jelas, nama produk, dan harga produk dengan format yang benar",PASS,"Setiap kartu produk menampilkan gambar yang jelas, nama produk lengkap, dan harga yang benar",N/A,N/A,
+,CAT-HT-007,Verifikasi pagination pada halaman kategori Hand Tools berfungsi dengan benar,Medium,Functional Positive,Pengguna berada di halaman kategori Hand Tools dan daftar produk lebih dari 1 halaman,"1. Klik nomor halaman berikutnya (misal halaman 2)
+2. Perhatikan produk yang ditampilkan",Halaman: 2,Halaman berpindah ke halaman berikutnya dan menampilkan produk lanjutan dari kategori Hand Tools. Nomor halaman aktif berubah,Halaman berpindah ke halaman berikutnya dan menampilkan produk lanjutan dari kategori Hand Tools. Nomor halaman aktif berubah,PASS,"Pagination (halaman 1, 2, 3, dst) berfungsi dengan baik untuk katalog dengan banyak produk",N/A,N/A,
+,CAT-HT-008,Verifikasi sorting produk berdasarkan nama (A-Z),Medium,Functional Positive,Pengguna berada di halaman kategori Hand Tools,"1. Klik menu Sort
+2. Pilih opsi ""Name (A-Z)""",Opsi sort: Name (A-Z),Produk diurutkan berdasarkan abjad nama produk dari A ke Z,Produk diurutkan berdasarkan abjad nama produk dari A ke Z,PASS,Opsi pengurutan A-Z berfungsi dengan baik,N/A,N/A,
+,CAT-HT-009,Verifikasi sorting produk berdasarkan nama (Z-A),Medium,Functional Positive,Pengguna berada di halaman kategori Hand Tools,"1. Klik menu Sort
+2. Pilih opsi ""Name (Z-A)""",Opsi sort: Name (Z-A),Produk diurutkan berdasarkan abjad nama produk dari Z ke A,Produk diurutkan berdasarkan abjad nama produk dari Z ke A,PASS,Opsi pengurutan Z-A berfungsi dengan baik,N/A,N/A,
+,CAT-HT-010,Verifikasi sorting produk berdasarkan harga terendah,Medium,Functional Positive,Pengguna berada di halaman kategori Hand Tools,"1. Klik menu Sort
+2. Pilih opsi ""Price (Low to High)""",Opsi sort: Price (Low to High),Produk diurutkan berdasarkan harga dari yang termurah ke termahal,Produk diurutkan berdasarkan harga dari yang termurah ke termahal,PASS,Opsi pengurutan Harga Low-High berfungsi dengan baik,N/A,N/A,
+,CAT-HT-011,Verifikasi sorting produk berdasarkan harga tertinggi,Medium,Functional Positive,Pengguna berada di halaman kategori Hand Tools,"1. Klik menu Sort2. Pilih opsi ""Price (High to Low)""",Opsi sort: Price (High to Low),Produk diurutkan berdasarkan harga dari yang termahal ke termurah,Produk diurutkan berdasarkan harga dari yang termahal ke termurah,PASS,Opsi pengurutan Harga High-Low  berfungsi dengan baik,N/A,N/A,
+,CAT-HT-012,Verifikasi sorting produk berdasarkan CO2 Rating (A-E),Low,Functional Positive,Pengguna berada di halaman kategori Hand Tools,"1. Klik menu Sort
+2. Pilih opsi ""CO2'  Rating (A-E)""",Opsi sort: CO2 Rating (A-E),Produk diurutkan berdasarkan tingkat efisiensi karbon dari A ke E (paling ramah lingkungan ke paling boros),Produk diurutkan berdasarkan tingkat efisiensi karbon dari A ke E (paling ramah lingkungan ke paling boros),PASS,Opsi pengurutan Rating CO2 dari A-E  berfungsi dengan baik,N/A,N/A,
+,CAT-HT-013,Verifikasi sorting produk berdasarkan CO2 Rating (E-A),Low,Functional Positive,Pengguna berada di halaman kategori Hand Tools,"1. Klik menu Sort
+2. Pilih opsi ""CO2 Rating (E-A)""",Opsi sort: CO2 Rating (E-A),Produk diurutkan berdasarkan tingkat efisiensi karbon dari E ke A (paling boros ke paling ramah lingkungan),Produk diurutkan berdasarkan tingkat efisiensi karbon dari E ke A (paling boros ke paling ramah lingkungan),PASS,Opsi pengurutan Rating CO2 dari E-A  berfungsi dengan baik,N/A,N/A,
+,,,,,,,,,,,,,,
+6,Fitur Categories - Power Tools,,,,,,,,,,,,,
+,Positive Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,CAT-PT-001,Verifikasi tampilan kategori Power Tools,Medium,UI,Pengguna membuka halaman kategori,"1. Akses menu Categories
+2. Pilih Power Tools",Kategori: Power Tools,"Semua elemen (sort, filter, produk, pagination) tampil dengan benar dan rapi","Semua elemen (sort, filter, produk, pagination) tampil dengan benar dan rapi",PASS,"Tampilan halaman kategori Power Tools rapi dengan semua elemen (sort, filter, produk, pagination)",N/A,N/A,
+,CAT-PT-002,Navigasi ke kategori lain melalui menu dropdown,High,Functional Positive,Pengguna berada di halaman kategori apa pun,"1. Klik menu ""Categories"" di navbar
+2. Pilih kategori lain dari dropdown",Kategori tujuan: (kategori yang dipilih),Halaman berpindah ke kategori lain dan produk sesuai dengan kategori yang dipilih,Halaman berpindah ke kategori lain dan produk sesuai dengan kategori yang dipilih,PASS,Navigasi antar kategori melalui menu dropdown berfungsi dengan lancar,N/A,N/A,
+,CAT-PT-003,Filter produk berdasarkan sub-kategori,High,Functional Positive,Halaman kategori Power Tools terbuka,"1. Di bagian ""By category"", centang satu sub-kategori (misal Drill)",Sub-kategori: Drill,"Hanya produk dengan sub-kategori ""Drill"" yang ditampilkan. Produk sub-kategori lain tidak muncul","Hanya produk dengan sub-kategori ""Drill"" yang ditampilkan. Produk sub-kategori lain tidak muncul",PASS,Filter berdasarkan sub-kategori (contoh: Drill) berfungsi dengan akurat,N/A,N/A,
+,CAT-PT-004,Filter kombinasi dua sub-kategori,Medium,Functional Positive,Halaman kategori Power Tools terbuka,1. Centang dua sub-kategori (misal Sander dan Saw),"Sub-kategori: Sander, Saw",Produk dari kedua sub-kategori tersebut muncul (gabungan produk Sander dan Saw),Produk dari kedua sub-kategori tersebut muncul (gabungan produk Sander dan Saw),PASS,Filter kombinasi dua sub-kategori sekaligus (contoh: Sander dan Saw) berfungsi dengan baik,N/A,N/A,
+,CAT-PT-005,Filter produk berdasarkan merek,High,Functional Positive,Halaman kategori Power Tools terbuka,"1. Di bagian ""By brand"", centang satu merek",Merek: (pilih satu merek),Hanya produk dari merek tersebut yang muncul. Produk merek lain tidak ditampilkan,Hanya produk dari merek tersebut yang muncul. Produk merek lain tidak ditampilkan,PASS,"Filter berdasarkan merek berfungsi dengan baik, hanya menampilkan produk merek yang dipilih",N/A,N/A,
+,CAT-PT-006,Filter lebih dari satu merek sekaligus,Medium,Functional Positive,Halaman kategori Power Tools terbuka,"1. Centang dua merek di bagian ""By brand""",Merek: (pilih dua merek),Hanya produk dengan 2 merek yang dipilih yang muncul (gabungan produk dari kedua merek),Hanya produk dengan 2 merek yang dipilih yang muncul (gabungan produk dari kedua merek),PASS,Filter lebih dari satu merek sekaligus didukung oleh sistem,N/A,N/A,
+,CAT-PT-007,Filter produk ramah lingkungan,Medium,Functional Positive,Halaman kategori Power Tools terbuka,"1. Aktifkan opsi ""Show only eco-friendly products"" di bagian Sustainability",Filter: Show only eco-friendly products,"Hanya produk dengan CO2 rating A atau B yang muncul. Produk dengan rating C, D, E tidak ditampilkan","Teks ""There are no products found"" ditampilkan di halaman",PASS,Filter produk ramah lingkungan tidak menampilkan hasil karena memang tidak ada produk yang sesuai,N/A,N/A,
+,CAT-PT-008,Menghapus filter aktif,Medium,Functional Positive,Filter telah diterapkan sebelumnya,1. Hapus centang filter yang dipilih (uncheck filter),Filter: (hapus filter aktif),Semua produk kembali tampil sesuai kategori awal (Power Tools tanpa filter),Semua produk kembali tampil sesuai kategori awal (Power Tools tanpa filter),PASS,Menghapus filter yang sudah dipilih akan menampilkan kembali semua produk,N/A,N/A,
+,CAT-PT-009,Pengurutan produk berdasarkan nama (A-Z),High,Functional Positive,Halaman kategori Power Tools terbuka,"1. Klik dropdown Sort
+2. Pilih ""Name (A-Z)""",Opsi sort: Name (A-Z),Produk diurutkan dari huruf A ke Z berdasarkan nama,Produk diurutkan dari huruf A ke Z berdasarkan nama,PASS,Opsi pengurutan A-Z berfungsi dengan baik,N/A,N/A,
+,CAT-PT-010,Pengurutan produk berdasarkan nama (Z-A),High,Functional Positive,Halaman kategori Power Tools terbuka,"1. Klik dropdown Sort
+2. Pilih ""Name (Z-A)""",Opsi sort: Name (Z-A),Produk diurutkan dari huruf Z ke A berdasarkan nama,Produk diurutkan dari huruf Z ke A berdasarkan nama,PASS,Opsi pengurutan Z-A berfungsi dengan baik,N/A,N/A,
+,CAT-PT-011,Pengurutan berdasarkan harga (Low to High),High,Functional Positive,Halaman kategori Power Tools terbuka,"1. Klik dropdown Sort2. Pilih ""Price (Low to High)""",Opsi sort: Price (Low to High),Produk diurutkan dari harga terendah ke tertinggi,Produk diurutkan dari harga terendah ke tertinggi,PASS,Opsi pengurutan Harga Low-High berfungsi dengan baik,N/A,N/A,
+,CAT-PT-012,Pengurutan berdasarkan harga (High to Low),High,Functional Positive,Halaman kategori Power Tools terbuka,"1. Klik dropdown Sort2. Pilih ""Price (High to Low)""",Opsi sort: Price (High to Low),Produk diurutkan dari harga tertinggi ke terendah,Produk diurutkan dari harga tertinggi ke terendah,PASS,Opsi pengurutan Harga High-Low  berfungsi dengan baik,N/A,N/A,
+,CAT-PT-013,Kombinasi filter dan sort bersamaan,High,Functional Positive,Halaman kategori Power Tools terbuka,"1. Aktifkan satu filter (misal merek tertentu)
+2. Pilih sort ""Price (Low to High)""",Filter: (pilih satu filter)Sort: Price (Low to High),Produk sesuai dengan filter yang dipilih dan diurutkan berdasarkan harga dari termurah ke termahal,Produk sesuai dengan filter yang dipilih dan diurutkan berdasarkan harga dari termurah ke termahal,PASS,Kombinasi filter dan sort dapat digunakan bersamaan tanpa masalah,N/A,N/A,
+,CAT-PT-014,"Verifikasi tombol "">>"" dan ""<<"" pagination",Medium,Functional Positive,Produk lebih dari 1 halaman,"1. Klik tombol "">>"" untuk ke halaman berikutnya
+2. Klik tombol ""<<"" untuk kembali ke halaman sebelumnya",Tidak ada data yang diperlukan,"Navigasi halaman bekerja dengan benar. Tombol "">>"" membawa ke halaman selanjutnya, tombol ""<<"" kembali ke halaman sebelumnya","Navigasi halaman bekerja dengan benar. Tombol "">>"" membawa ke halaman selanjutnya, tombol ""<<"" kembali ke halaman sebelumnya",PASS,Tombol navigasi pagination (>> dan <<) berfungsi untuk maju dan mundur halaman,N/A,N/A,
+,CAT-PT-015,Klik salah satu produk untuk melihat detail,High,Functional Positive,Halaman kategori Power Tools terbuka,1. Klik gambar atau nama produk,Produk: (pilih satu produk),"Sistem menampilkan halaman detail produk yang dipilih dengan informasi lengkap (gambar, harga, deskripsi, dll)","Sistem menampilkan halaman detail produk yang dipilih dengan informasi lengkap (gambar, harga, deskripsi, dll)",PASS,Klik pada produk mengarahkan ke halaman detail produk dengan informasi lengkap,N/A,N/A,
+,CAT-PT-016,Validasi konsistensi data harga di daftar dan halaman detail,Medium,Functional Positive,Produk memiliki halaman detail,"1. Catat harga produk di halaman kategori (misal $45.99)
+2. Buka halaman detail produk
+3. Bandingkan harga di kedua halaman",Produk: (pilih satu produk),Harga di halaman kategori dan halaman detail adalah sama (tidak ada perbedaan harga),Harga di halaman kategori dan halaman detail adalah sama (tidak ada perbedaan harga),PASS,Harga produk di halaman kategori dan halaman detail harus sama (konsistensi data),N/A,N/A,
+,CAT-PT-017,Verifikasi bahasa situs,Low,UI,Situs mendukung multi-bahasa,"1. Klik ikon bahasa (EN) di kanan atas
+2. Pilih bahasa lain dari dropdown",Bahasa tujuan: (pilih bahasa),Semua label dan teks di halaman berubah sesuai bahasa yang dipilih (misal dari English ke Indonesia),Semua label dan teks di halaman berubah sesuai bahasa yang dipilih (misal dari English ke Indonesia),PASS,"Fitur multi-bahasa berfungsi, semua teks berubah sesuai bahasa yang dipilih",N/A,N/A,
+,,,,,,,,,,,,,,
+,Negative Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,CAT-PT-018,Filter menghasilkan 0 produk,Medium,Functional Negative,Halaman kategori Power Tools terbuka,1. Pilih kombinasi filter yang tidak memiliki hasil (misal merek X + sub-kategori Y yang tidak ada),Filter: (kombinasi yang tidak ada produknya),"Teks ""No products found"" atau ""Tidak ada produk ditemukan"" ditampilkan di halaman","Teks ""There are no products found"" ditampilkan di halaman",PASS,"Ketika filter tidak menghasilkan produk apapun, sistem menampilkan pesan ""There are no products found""",N/A,N/A,
+,,,,,,,,,,,,,,
+7,Fitur Categories - Special Tools,,,,,,,,,,,,,
+,Positive Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,CAT-ST-001,Verifikasi tampilan Special Tools,High,UI/Functional,Pengguna berada di halaman utama website Toolshop,"1. Klik menu ""Categories""
+2. Pilih ""Special Tools""",Kategori: Special Tools,"Halaman Special Tools ditampilkan dengan judul ""Category: Special Tools"" dan dropdown Sort muncul dengan benar","Halaman Special Tools ditampilkan dengan judul ""Category: Special Tools"" dan dropdown Sort muncul dengan benar",PASS,Halaman Special Tools tampil dengan struktur yang benar meskipun tidak ada produk,N/A,N/A,
+,CAT-ST-002,"Verifikasi pesan ""There are no products found"" muncul jika tidak ada produk",Medium,Functional Positive,Pengguna berada di halaman Special Tools,"1. Akses halaman Special Tools
+2. Perhatikan pesan yang muncul",Tidak ada data yang diperlukan,"Pesan ""There are no products found"" atau ""Tidak ada produk ditemukan"" tampil ketika tidak ada item di kategori tersebut","Pesan ""There are no products found"" atau ""Tidak ada produk ditemukan"" tampil ketika tidak ada item di kategori tersebut",PASS,"Pesan ""There are no products found"" ditampilkan dengan jelas ketika kategori kosong",N/A,N/A,
+,CAT-ST-003,Verifikasi dropdown Sort muncul dan berfungsi,High,Functional Positive,Pengguna berada di halaman Special Tools,"1. Perhatikan dropdown Sort di halaman
+2. Klik dropdown untuk menampilkan daftar opsi","Opsi sort: Name (A-Z), Name (Z-A), Price (High-Low), Price (Low-High), CO2 Rating (A-E), CO2 Rating (E-A)","1. Dropdown Sort tampil dengan 6 opsi:
+   - Name (A-Z)
+   - Name (Z-A)
+   - Price (High-Low)
+   - Price (Low-High)
+   - CO2 Rating (A-E)
+   - CO2 Rating (E-A)
+2. Setiap opsi dapat diklik
+3. Setelah memilih opsi, halaman tetap menampilkan 
+   pesan ""There are no products found""
+4. Tidak ada error yang muncul",Semua opsi sort muncul dengan benar dan bisa dipilih (meskipun tidak ada produk),PASS,Dropdown pengurutan tetap dapat diakses meskipun tidak ada produk di kategori,N/A,N/A,
+,CAT-ST-004,Verifikasi filter By brand muncul dan berfungsi,High,Functional Positive,Pengguna berada di halaman Special Tools,"1. Perhatikan filter By brand di halaman
+2. Klik salah satu brand",Opsi By brand,Semua opsi By brand muncul dengan benar dan bisa dipilih (meskipun tidak ada produk),Semua opsi By brand muncul dengan benar dan bisa dipilih (meskipun tidak ada produk),PASS,Filter merek tetap dapat diakses meskipun tidak ada produk,N/A,N/A,
+,CAT-ST-005,Verifikasi filter Sustainability muncul dan berfungsi,High,Functional Positive,Pengguna berada di halaman Special Tools,"1. Perhatikan filter Sustainbility di halaman
+2. Klik  Show only eco-friendly products",Opsi Show only eco-friendly products,Semua opsi  Show only eco-friendly products muncul dengan benar dan bisa dipilih (meskipun tidak ada produk),Semua opsi  Show only eco-friendly products muncul dengan benar dan bisa dipilih (meskipun tidak ada produk),PASS,Filter Sustainability tetap berfungsi dan dapat diklik,N/A,N/A,
+,,,,,,,,,,,,,,
+,Negative Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,CAT-ST-006,Verifikasi kombinasi semua filter secara bersamaan,High,Functional Negative,Pengguna berada di halaman Special Tools,"1. Pilih brand di filter “By brand”
+2. Centang “Show only eco-friendly products”
+3. Pilih sort “Name (A–Z)”
+4. Perhatikan hasil",Brand: ForgeFlexSustainability: CheckedSort: Name (A-Z),1. Semua filter dapat dipilih tanpa error2. Muncul pesan “There are no products found”3. Tidak ada error console4. Filter tetap aktif,Filter kombinasi tetap berfungsi meskipun tidak ada produk,PASS,–,–,,
+,CAT-ST-007,Verifikasi akses URL kategori typo/salah,High,Functional Negative,Pengguna di halaman utama,"1. Akses URL salah
+2. Tekan Enter
+3. Lihat respons",URL: /category/special-toolss,1. Tampil 404 atau2. Redirect ke kategori benar atau3. Pesan “Category not found”,Validasi error handling URL invalid,PASS,–,–,,
+,CAT-ST-008,Verifikasi refresh halaman setelah memilih filter,High,Functional Negative,Pengguna berada di halaman Special Tools dengan filter aktif,"1. Pilih brand
+2. Pilih sort
+3. Centang sustainability
+4. Tekan F5
+5. Perhatikan state filter",Brand: ForgeFlexSort: Price (High–Low)Sustainability: Checked,Opsi 1: Filter tetap tersimpanOpsi 2: Reset tanpa error,Filter hilang ketika di refresh,FAILED,–,–,,
+,CAT-ST-009,Verifikasi akses kategori tanpa internet (offline mode),Low,Functional Negative,Pengguna berada di halaman Special Tools,"1. Matikan internet
+2. Klik filter
+3. Refresh halaman",Mode Offline,1. Muncul pesan no internet2. Cached content tampil3. Tidak infinite loading,Validasi offline state,–,–,–,,
+,CAT-ST-010,Verifikasi copy-paste URL dengan filter parameter,Medium,Functional Negative,Filter aktif,"1. Pilih brand dan sort
+2. Copy URL
+3. Buka tab baru
+4. Paste URL",https://practicesoftwaretesting.com/category/special-tools,Jika parameter disimpan → filter otomatis applyJika tidak → tampil default tanpa error,Filter tidak tersimpan,–,–,–,,
+,CAT-ST-011,Verifikasi responsiveness mobile dengan semua filter,High,UI/Functional Negative,Akses via mobile viewport,"1. Resize ke 375px
+2. Coba filter brand
+3. Coba sort
+4. Centang sustainability",Device: Mobile (375px width),1. Semua filter tampil2. Dropdown & checkbox normal3. Tidak overlap atau rusak4. Touch target cukup besar,Validasi mobile responsive,–,–,–,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+8,Fitur Categories - Rentals,,,,,,,,,,,,,
+,Positive Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,CAT-RNT-001,Verifikasi tampilan halaman Rentals,High,UI/Functional,Pengguna berada di halaman utama website Toolshop,"1. Klik menu ""Categories"" di navigasi atas
+2. Pilih submenu ""Rentals""",Kategori: Rentals,"Halaman Rentals ditampilkan dengan daftar alat berat seperti Excavator, Bulldozer, dan Crane dengan gambar dan deskripsi","Halaman Rentals ditampilkan dengan daftar alat berat seperti Excavator, Bulldozer, dan Crane dengan gambar dan deskripsi",PASS,"Halaman Rentals menampilkan alat berat (Excavator, Bulldozer, Crane) dengan gambar dan deskripsi",N/A,N/A,
+,CAT-RNT-002,Verifikasi setiap item rental menampilkan gambar dan deskripsi,Medium,UI,Pengguna berada di halaman Rentals,"1. Lihat setiap item pada daftar Rentals
+2. Perhatikan apakah gambar dan deskripsi tampil",Tidak ada data yang diperlukan,"Setiap item menampilkan gambar yang jelas, judul produk, dan deskripsi teks yang informatif","Setiap item menampilkan gambar yang jelas, judul produk, dan deskripsi teks yang informatif",PASS,"Setiap item rental menampilkan gambar yang jelas, judul produk, dan deskripsi yang informatif",N/A,N/A,
+,CAT-RNT-003,Verifikasi link gambar item rental dapat diklik,Low,Functional Positive,Pengguna berada di halaman Rentals,1. Klik gambar atau judul pada salah satu item rental (misal Bulldozer),Item: Bulldozer,Gambar atau judul item mengarahkan ke halaman detail produk atau informasi lebih lanjut tentang produk tersebut,Gambar atau judul item mengarahkan ke halaman detail produk atau informasi lebih lanjut tentang produk tersebut,PASS,Link gambar atau judul produk rental dapat diklik dan mengarah ke halaman detail,N/A,N/A,
+,,,,,,,,,,,,,,
+9,Sub-section: Product Detail Page (PDP) - Rentals,,,,,,,,,,,,,
+,Positive Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,PDP-001,Verifikasi halaman detail produk terbuka dengan benar,High,Functional/UI,Pengguna berada di halaman Rentals,"1. Klik produk ""Bulldozer"" dari daftar Rentals",Produk: Bulldozer,"Halaman detail produk terbuka dan menampilkan semua elemen utama (gambar besar, nama produk, harga per jam, CO2 Rating, deskripsi, slider durasi, tombol ""Add to cart"", tombol ""Add to favourites"")","Halaman detail produk terbuka dan menampilkan semua elemen utama (gambar besar, nama produk, harga per jam, CO2 Rating, deskripsi, slider durasi, tombol ""Add to cart"", tombol ""Add to favourites"")",PASS,"Halaman detail produk rental memiliki elemen yang berbeda dari produk biasa (slider durasi, harga per jam)",N/A,N/A,
+,PDP-002,Verifikasi tampilan gambar utama produk,Medium,UI,Pengguna berada di halaman detail produk Rentals,1. Perhatikan gambar utama di bagian atas halaman detail,Tidak ada data yang diperlukan,"Gambar produk ditampilkan dengan ukuran proporsional, jelas, dan tidak rusak/pecah","Gambar produk ditampilkan dengan ukuran proporsional, jelas, dan tidak rusak/pecah",PASS,Gambar produk berkualitas High penting untuk item rental bernilai High,N/A,N/A,
+,PDP-003,Verifikasi informasi harga produk tampil dengan benar,High,Functional Positive,Pengguna berada di halaman detail produk Rentals,"1. Perhatikan bagian harga di halaman detail
+2. Periksa apakah harga per jam dan total harga tampil",Harga: $147.50 per hour,Harga tampil sesuai data produk dengan format yang benar ($147.50 per hour) dan total harga dihitung otomatis berdasarkan durasi yang dipilih,Harga tampil sesuai data produk dengan format yang benar ($147.50 per hour) dan total harga dihitung otomatis berdasarkan durasi yang dipilih,PASS,"Informasi harga per jam ditampilkan dengan jelas, memberikan transparansi harga",N/A,N/A,
+,PDP-004,Verifikasi durasi sewa dapat diubah,High,Functional Positive,Pengguna berada di halaman detail produk Rentals,"1. Geser slider durasi dari 1 jam ke nilai lain (misalnya 3 jam)
+2. Perhatikan perubahan total harga",Durasi: 1 jam → 3 jam,Total harga berubah sesuai durasi yang dipilih (misalnya 3 × $147.50 = $442.50). Slider bergerak dengan lancar,Total harga berubah sesuai durasi yang dipilih (misalnya 3 × $147.50 = $442.50). Slider bergerak dengan lancar,PASS,Slider durasi sewa berfungsi dengan perhitungan harga total secara otomatis dan real-time,N/A,N/A,
+,PDP-005,Verifikasi CO2 Rating muncul,Medium,UI,Pengguna berada di halaman detail produk Rentals,1. Perhatikan bagian CO2 Rating (A–E) di halaman detail,Rating produk: C (contoh),CO2 Rating ditampilkan dengan jelas dan sesuai dengan data produk (misalnya Rating C dengan warna/ikon yang sesuai),CO2 Rating ditampilkan dengan jelas dan sesuai dengan data produk (misalnya Rating C dengan warna/ikon yang sesuai),PASS,CO2 Rating ditampilkan untuk kesadaran dampak lingkungan,N/A,N/A,
+,PDP-006,Verifikasi tombol Add to cart berfungsi,High,Functional Positive,Pengguna berada di halaman detail produk Rentals,"1. Pilih durasi sewa (misal 2 jam)
+2. Klik tombol ""Add to cart""
+3. Periksa apakah muncul notifikasi atau perubahan pada ikon cart",Produk: BulldozerDurasi: 2 jam,"Produk berhasil ditambahkan ke keranjang belanja. Muncul notifikasi ""Product added to cart"" dan jumlah item di ikon cart bertambah","Produk berhasil ditambahkan ke keranjang belanja. Muncul notifikasi ""Product added to cart"" dan jumlah item di ikon cart bertambah",PASS,"Tombol ""Add to cart"" untuk item rental berfungsi dengan baik",N/A,N/A,
+,PDP-007,Verifikasi tombol Add to favourites berfungsi,Medium,Functional Positive,Pengguna berada di halaman detail produk Rentals,"1. Klik tombol ""Add to favourites"" (ikon hati/love)
+2. Periksa apakah muncul pesan konfirmasi",Produk: Bulldozer,"Produk berhasil ditambahkan ke daftar favorit. Muncul pesan konfirmasi ""Product added to favourites"" dan ikon hati berubah warna (misal dari outline menjadi solid)","Produk berhasil ditambahkan ke daftar favorit. Muncul pesan konfirmasi ""Product added to favourites"" dan ikon hati berubah warna (misal dari outline menjadi solid)",PASS,"Tombol ""Add to favourites"" untuk item rental berfungsi, membantu pengguna menyimpan item favorit",N/A,N/A,
+,PDP-008,Verifikasi bagian Related Products muncul,Medium,Functional/UI,Pengguna berada di halaman detail produk Rentals,"1. Scroll ke bagian bawah halaman detail
+2. Lihat daftar produk terkait (Related Products)","Produk terkait: Cordless Drill 20V, 24V, 18V, 12V, Excavator, Crane","Daftar produk terkait muncul di bagian bawah halaman dan menampilkan gambar, nama, serta link ""More information"" untuk setiap produk","Daftar produk terkait muncul di bagian bawah halaman dan menampilkan gambar, nama, serta link ""More information"" untuk setiap produk",PASS,"Bagian ""Related Products"" menampilkan produk terkait untuk meningkatkan penjualan silang",N/A,N/A,
+,PDP-009,"Verifikasi link ""More information"" pada produk terkait berfungsi",Medium,Functional Positive,Pengguna berada di halaman detail produk Rentals,"1. Scroll ke bagian Related Products
+2. Klik ""More information"" pada salah satu produk terkait (misal Cordless Drill 20V)",Produk terkait: Cordless Drill 20V,User diarahkan ke halaman detail produk yang sesuai (halaman detail Cordless Drill 20V),User diarahkan ke halaman detail produk yang sesuai (halaman detail Cordless Drill 20V),PASS,"Link ""More information"" pada produk terkait berfungsi dengan baik",N/A,N/A,
+,PDP-010,Verifikasi navigasi kembali ke kategori berfungsi,Low,Functional Positive,Pengguna berada di halaman detail produk Rentals,"1. Klik menu ""Categories"" di header/navbar
+2. Pilih kategori lain atau kembali ke Rentals",Tidak ada data yang diperlukan,User diarahkan kembali ke halaman kategori sebelumnya atau kategori yang dipilih,User diarahkan kembali ke halaman kategori sebelumnya atau kategori yang dipilih,PASS,Navigasi kembali ke kategori atau halaman sebelumnya berfungsi,N/A,N/A,
+,,,,,,,,,,,,,,
+10,Fitur Contact,,,,,,,,,,,,,
+,Positive Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,CNT-001,Kirim pesan dengan data valid,High,Functional Positive,Halaman Contact terbuka,"1. Pilih Subject
+2. Isi Message
+3. Klik Send","Subject: Customer service
+Message: pertanyaan stok",Pesan terkirim dan muncul notifikasi hijau “Message sent successfully”,"Muncul error ""Currently we only allow empty files.""",FAILED,"BUG HIGH: Error message misleading, file validation issue",Medium,Mencegah pengiriman form yang tidak lengkap,
+,CNT-002,Validasi upload file valid (0kb .txt),Medium,Functional Positive,Halaman Contact terbuka,"1. Isi Subject & Message
+2. Upload file .txt 0kb
+3. Klik Send",File: empty.txt (0kb),Pesan terkirim & notifikasi hijau muncul,"Muncul ""Thanks for your message! We will contact you shortly""",PASS,Upload file dengan requirement khusus (0kb .txt) berfungsi dengan benar,N/A,N/A,
+,CNT-003,Kirim pesan dengan attachment valid,Medium,Functional Positive,Halaman Contact terbuka,"1. Pilih Subject
+2. Isi Message
+3. Upload .txt 0kb
+4. Klik Send",File: hai.txt (0kb),Pesan terkirim & file diterima,"Muncul ""Thanks for your message! We will contact you shortly""",PASS,Pengiriman form lengkap dengan attachment berhasil dilakukan,N/A,N/A,
+,CNT-004,Validasi opsi dropdown Subject,Low,UI,Halaman Contact terbuka,"1. Klik dropdown Subject
+2. Amati pilihan",Tidak ada data yang diperlukan,"Dropdown menampilkan: Customer service, Webmaster, Return, Payments, Warranty, Status of my order","Dropdown menampilkan: Customer service, Webmaster, Return, Payments, Warranty, Status of my order",PASS,Dropdown Subject menampilkan semua pilihan topik dengan lengkap,N/A,N/A,
+,CNT-005,Validasi informasi syarat attachment,Low,UI,Halaman Contact terbuka,"1. Buka halaman Contact
+2. Amati teks di bawah tombol attachment",Tidak ada data yang diperlukan,"Teks keterangan menampilkan “Only files with the .txt extension are allowed, and files must be 0kb”","Teks keterangan menampilkan “Only files with the .txt extension are allowed, and files must be 0kb”",PASS,Informasi syarat file attachment ditampilkan dengan jelas,N/A,N/A,
+,,,,,,,,,,,,,,
+,Negative Test Case,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Severity Impact,
+,CNT-006,Verifikasi tampilan form Contact,Medium,UI,Pengguna membuka halaman Contact,"1. Buka halaman Contact
+2. Amati tampilan form",Tidak ada data yang diperlukan,"Form menampilkan header “Contact”, greeting message “Hello Erlina Nainggolan…”, field Subject, Message, tombol Choose File (.txt, 0kb), dan tombol Send","Form menampilkan header “Contact”, greeting message “Hello Erlina Nainggolan…”, field Subject, Message, tombol Choose File (.txt, 0kb), dan tombol Send",PASS,"BUG PRIORITAS HIGH - Sistem menampilkan pesan error yang membingungkan: ""Currently we only allow empty files"" padahal tidak ada file yang di-upload",N/A,N/A,
+,CNT-007,Kirim pesan tanpa mengisi field wajib,High,Functional Negative,Halaman Contact terbuka,"1. Biarkan Subject/Message kosong
+2. Klik Send","Subject: kosong
+Message: kosong",Muncul error merah “This field is required”,"Muncul error merah ""Subject is required"" dan ""Message is required""",PASS,"Validasi kolom wajib berfungsi dengan baik, mencegah pengiriman form kosong",N/A,N/A,
+,CNT-008,Validasi subject belum dipilih,High,Validation,Halaman Contact terbuka,"1. Biarkan Subject default
+2. Isi Message
+3. Klik Send","Subject: default
+Message: valid",Muncul error “Subject is required”,"Muncul error ""Subject is required""",PASS,"Validasi dropdown Subject berfungsi, memastikan pengguna memilih topik pesan",N/A,N/A,
+,CNT-009,Validasi pesan kosong,High,Validation,Halaman Contact terbuka,"1. Pilih Subject
+2. Kosongkan Message
+3. Klik Send","Subject: valid
+Message: kosong",Muncul error “Message cannot be empty”,"Muncul error ""Message is required""",PASS,"Validasi kolom Message berfungsi, mencegah pengiriman pesan kosong",N/A,N/A,
+,CNT-010,Validasi upload file dengan ekstensi tidak diperbolehkan,High,Validation,Halaman Contact terbuka,"1. Isi Subject & Message
+2. Upload file selain .txt
+3. Klik Send",File: gambar.jpg,Muncul error “Only .txt files allowed”,"Muncul error ""File should be empty""",PASS,Validasi tipe file berfungsi sesuai aturan (hanya .txt yang diperbolehkan),N/A,N/A,
+,CNT-011,Validasi upload file ukuran > 0kb,High,Validation,Halaman Contact terbuka,"1. Isi Subject & Message
+2. Upload file .txt > 0kb
+3. Klik Send",File: test.txt (10kb),Muncul error “File must be 0kb”,"Muncul error ""File should be empty""",PASS,Validasi ukuran file berfungsi (hanya 0kb yang diperbolehkan - aturan yang tidak biasa),N/A,N/A,
+,,,,,,,,,,,,,,
+11,Security Negative Testing,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,TC ID,Test Case Title,Priority,Type,Pre-condition,Test Steps,Test Data,Expected Result,Actual Result,Status,Note,Severity,Security Impact,Link JIRA
+,SEC-001,SQL Injection pada field email di halaman Login,High,Security Negative,Halaman login terbuka,"1. Isi Email ' OR '1'='1
+2. Isi Password sembarang
+3. Klik Login",Email: ' OR '1'='1Password: test123,Sistem menolak input dan menampilkan error; login gagal,Sistem menolak input,PASS,Sistem berhasil menolak SQL Injection,N/A,Mencegah akses ilegal & kebocoran data,
+,SEC-002,SQL Injection pada field email di halaman Registration,High,Security Negative,Halaman registrasi terbuka,"1. Isi form valid kecuali email: admin'--
+2. Klik Register",Email: admin'--,Sistem menolak input,"Email mendapat warning, registrasi gagal",PASS,Sistem berhasil menolak SQL Injection,N/A,Mencegah manipulasi database,
+,SEC-003,SQL Injection pada field Search di Home,High,Security Negative,Pengguna di Home,"1. Search: '; DROP TABLE products--
+2. Klik Search",; DROP TABLE products--,Sistem menolak input,"Sistem aman, hanya menampilkan “no products found”",PASS,Query berbahaya tidak dijalankan,N/A,Database terlindungi dari DROP TABLE,
+,SEC-004,XSS pada field First Name di Registration,High,Security Negative,Halaman registrasi terbuka,"1. Isi FN: <script>alert('XSS')</script>
+2. Submit",First Name: <script>alert('XSS')</script>,Script tidak disimpan / tidak berjalan,Script tersimpan di DB (Stored XSS),FAILED,Stored XSS ditemukan,Critical,Risiko pencurian session & injeksi script,https://erlina-qa-portfolio.atlassian.net/browse/KAN-9
+,SEC-005,XSS pada field Message di Contact Form,High,Security Negative,Halaman Contact terbuka,"1. Message: <img src=x onerror=alert('XSS')>
+2. Submit",<img src=x onerror=alert('XSS')>,Script tidak berjalan,"Form gagal submit (min char 50), script tidak dieksekusi",PASS,Validasi panjang mencegah submission,N/A,N/A,
+,SEC-006,XSS pada field Search di Home,High,Security Negative,Pengguna di Home,"1. Search: <script>alert('Hacked')</script>
+2. Klik Search",<script>alert('Hacked')</script>,Script tidak berjalan,Script berhasil dijalankan (alert muncul),FAILED,Reflected XSS aktif,Critical,Dapat dipakai untuk phishing & mencuri cookie,https://erlina-qa-portfolio.atlassian.net/browse/KAN-10
+,SEC-007,Brute Force Prevention – Login salah berulang,High,Security Negative,Halaman login terbuka,1. Login gagal 5–10x,"Email valid, password salah",Sistem harus lockout / captcha,"Tidak ada lockout, brute force bisa terus",FAILED,Tidak ada brute force protection,Critical,Password dapat ditebak dengan ribuan percobaan,https://erlina-qa-portfolio.atlassian.net/browse/KAN-11
+,SEC-008,Session Expiration – Token tidak valid setelah logout,High,Security Functional,User login,"1. Copy token
+2. Logout
+3. Gunakan ulang token",Token session,Token harus invalid,Token menjadi invalid setelah logout,PASS,Session dihapus dengan benar,N/A,N/A,
+,SEC-009,Session Hijacking Prevention – Dua browser,Medium,Security Functional,Login di browser 1,"1. Copy token
+2. Paste di browser 2",Token browser 1,Sistem harus blokir,Browser 2 gagal akses,PASS,Session hijack berhasil dicegah,N/A,N/A,
+,SEC-010,Password tidak muncul di URL setelah login,High,Security Functional,Halaman login,"1. Login valid
+2. Cek URL",Email & password valid,Password tidak muncul di URL,Password tidak muncul di URL,PASS,Kredensial aman,N/A,N/A,
+,SEC-011,Weak Password Rejection,High,Security Validation,Registrasi terbuka,"1. Password: 12345
+2. Register",Password: 12345,Sistem menolak password lemah,Ditolak & muncul error,PASS,Password lemah berhasil ditolak,N/A,N/A,
+,SEC-012,CSRF Protection pada Contact Form,Medium,Security Functional,Halaman contact,"1. Isi form valid
+2. Submit",Form valid,Request harus pakai CSRF token,Submit berhasil & ada CSRF token,PASS,CSRF berhasil divalidasi,N/A,N/A,
